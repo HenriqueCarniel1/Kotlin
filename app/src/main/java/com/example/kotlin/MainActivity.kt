@@ -1,6 +1,7 @@
 package com.example.kotlin
 
 import android.os.Bundle
+import android.widget.Button
 import android.widget.Switch
 import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
@@ -9,6 +10,8 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 
 class MainActivity : AppCompatActivity() {
+
+    private var clickCount = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -22,20 +25,17 @@ class MainActivity : AppCompatActivity() {
             insets
         }
 
-        // Encontrar o TextView e o Switch no layout
+        // Encontrar os TextViews, o Switch e o Button no layout
         val helloWorldTextView: TextView = findViewById(R.id.hello)
-        val switch: Switch = findViewById(R.id.switch1)
+        val button: Button = findViewById(R.id.button)
 
         // Definir o texto inicial do TextView
-        helloWorldTextView.text = "Hello World"
+        helloWorldTextView.text = "Você clicou: 0 vezes"
 
-        // Configurar um listener para o Switch
-        switch.setOnCheckedChangeListener { _, isChecked ->
-            if (isChecked) {
-                helloWorldTextView.text = "Gustavo Henrique"
-            } else {
-                helloWorldTextView.text = "Hello World"
-            }
+        // Configurar um listener para o Button
+        button.setOnClickListener {
+            clickCount++
+            helloWorldTextView.text = "Você clicou: $clickCount vezes"
         }
     }
 }
